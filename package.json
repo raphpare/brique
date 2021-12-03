@@ -1,15 +1,25 @@
 {
     "name": "brique",
     "version": "1.0.1",
-    "author": "Raphaël Paré",
+    "author": "Raphaël Paré <raph.pare@outlook.com>",
     "description": "Creating cascading layout grids like Pinterest",
     "main": "lib/index.js",
-    "types": "lib",
+    "module": "lib/index.es.js",
+    "browser": "lib/index.iife.js",
+    "files": [
+        "lib"
+    ],
+    "types": "lib/index.d.ts",
     "scripts": {
-        "build": "tsc"
+        "build": "rimraf lib && rollup -c",
+        "watch": "rimraf lib && rollup -c && rollup -cw",
+        "clean": "rimraf node_modules && rimraf lib"
     },
     "license": "ISC",
     "devDependencies": {
+        "rollup": "^2.60.2",
+        "rollup-plugin-terser": "^7.0.2",
+        "rollup-plugin-typescript2": "^0.31.1",
         "typescript": "^4.5.2"
     }
 }

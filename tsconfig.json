@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "es5",
         "module": "es6",
         "declaration": true,
+        "declarationDir": "./lib",
         "declarationMap": true,
         "sourceMap": true,
+        "noImplicitAny": true,
         "outDir": "./lib",
-        "strict": true,
-        "esModuleInterop": true
+        "strict": true
     },
-    "compileOnSave": true,
-    "include": ["src"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"]
 }
