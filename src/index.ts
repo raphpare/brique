@@ -1,4 +1,3 @@
-
 export interface BriqueOptions {
     columns: number;
     columnGap?: string;
@@ -10,14 +9,19 @@ export class Brique {
         columns: 3,
         columnGap: '32px',
         rowGap: '32px',
-    }
+    };
 
     public itemElements?: HTMLElement[];
-    private resizeEvent: () => void ;
+    private resizeEvent: () => void;
     private options: BriqueOptions;
-    
-    constructor(public gridElement: HTMLElement, options: BriqueOptions = Brique.DEFAULT_OPTIONS) {
-        this.itemElements = Array.from(this.gridElement.children) as HTMLElement[];
+
+    constructor(
+        public gridElement: HTMLElement,
+        options: BriqueOptions = Brique.DEFAULT_OPTIONS
+    ) {
+        this.itemElements = [].slice.call(
+            this.gridElement.children
+        ) as HTMLElement[];
         this.options = options;
         this.resizeEvent = this.resize.bind(this);
         this.update();
@@ -46,9 +50,15 @@ export class Brique {
     }
 
     private resize() {
-        const gridComputedStyle: CSSStyleDeclaration = window.getComputedStyle(this.gridElement);
-        const rowHeight: number = parseInt(gridComputedStyle.getPropertyValue('grid-auto-rows'));
-        const rowGap: number = parseInt(gridComputedStyle.getPropertyValue('grid-row-gap'));
+        const gridComputedStyle: CSSStyleDeclaration = window.getComputedStyle(
+            this.gridElement
+        );
+        const rowHeight: number = parseInt(
+            gridComputedStyle.getPropertyValue('grid-auto-rows')
+        );
+        const rowGap: number = parseInt(
+            gridComputedStyle.getPropertyValue('grid-row-gap')
+        );
 
         if (!this.itemElements) return;
         this.itemElements?.forEach((item, index) => {
@@ -58,14 +68,30 @@ export class Brique {
                 item.style.removeProperty('margin-top');
             }
             const itemComputedStyle = window.getComputedStyle(item);
-            const itemSpacing: number = parseInt(itemComputedStyle.getPropertyValue('margin-top')) + parseInt(itemComputedStyle.getPropertyValue('padding-top')) + parseInt(itemComputedStyle.getPropertyValue('padding-bottom'));
-            const itemHeight: number = (Array.from(item.children ) as HTMLElement[]).reduce((acc: number, curr: HTMLElement) =>  {
+            const itemSpacing: number =
+                parseInt(itemComputedStyle.getPropertyValue('margin-top')) +
+                parseInt(itemComputedStyle.getPropertyValue('padding-top')) +
+                parseInt(itemComputedStyle.getPropertyValue('padding-bottom'));
+            const itemHeight: number = (
+                [].slice.call(item.children) as HTMLElement[]
+            ).reduce((acc: number, curr: HTMLElement) => {
                 const childrenComputedStyle = window.getComputedStyle(curr);
-                const childrenMarginTop: number = parseInt(childrenComputedStyle.getPropertyValue('margin-top'));
-                const childrenMarginBottom: number = parseInt(childrenComputedStyle.getPropertyValue('margin-bottom'));
-                return acc + curr.getBoundingClientRect().height + childrenMarginTop + childrenMarginBottom;
+                const childrenMarginTop: number = parseInt(
+                    childrenComputedStyle.getPropertyValue('margin-top')
+                );
+                const childrenMarginBottom: number = parseInt(
+                    childrenComputedStyle.getPropertyValue('margin-bottom')
+                );
+                return (
+                    acc +
+                    curr.getBoundingClientRect().height +
+                    childrenMarginTop +
+                    childrenMarginBottom
+                );
             }, itemSpacing as number);
-            const rowSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
+            const rowSpan = Math.ceil(
+                (itemHeight + rowGap) / (rowHeight + rowGap)
+            );
             item.style.gridRowEnd = `span ${rowSpan}`;
         });
     }

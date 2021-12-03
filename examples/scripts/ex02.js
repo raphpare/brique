@@ -1,3 +1,5 @@
+import { Brique } from '../../lib/index.js';
+
 const refGrid = document.querySelector('.grid');
 const options = {
     columns: 4,

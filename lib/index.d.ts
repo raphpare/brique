@@ -18,3 +18,4 @@ export declare class Brique {
     private resize;
     private setStyle;
 }
+//# sourceMappingURL=index.d.ts.map

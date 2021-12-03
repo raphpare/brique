@@ -1,3 +1,5 @@
+import { Brique } from '../../lib/index.js';
+
 const refGrid = document.querySelector('.grid');
 const briqueGrid = new Brique(refGrid);
 const mediaQueryMobile = window.matchMedia('(max-width: 767px)');

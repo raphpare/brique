@@ -4,14 +4,11 @@
     "author": "Raphaël Paré",
     "description": "Creating cascading layout grids like Pinterest",
     "main": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "types": "lib",
     "scripts": {
-        "build": "tsc && tsc -watch"
+        "build": "tsc -p ."
     },
     "license": "ISC",
-    "files": [
-        "/lib"
-    ],
     "devDependencies": {
         "typescript": "^4.5.2"
     }
