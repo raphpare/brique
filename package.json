@@ -1,6 +1,6 @@
 {
     "name": "brique",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Raphaël Paré",
     "description": "Creating cascading layout grids like Pinterest",
     "main": "lib/index.js",
