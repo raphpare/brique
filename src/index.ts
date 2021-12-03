@@ -60,7 +60,6 @@ export class Brique {
             gridComputedStyle.getPropertyValue('grid-row-gap')
         );
 
-        if (!this.itemElements) return;
         this.itemElements?.forEach((item, index) => {
             if (this.options.columns <= index) {
                 item.style.marginTop = this.options.rowGap || '';
