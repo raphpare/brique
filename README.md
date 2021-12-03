@@ -4,31 +4,31 @@ Creating cascading layout grids like [Pinterest](https://www.pinterest.com/).
 ## Install
 ### Package manager
 ```
-npm install brique --save
+npm i brique --save
 ```
 
 ## Initialize
 
 ### TypeScript
 ``` ts
-import { Brique } from 'brique';
+import { Brique } from 'node_modules/brique/lib/index.js';
 
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
 ```
 
-### JavaScript
-Importing the library into HTML
-
+### JavaScript ES6
+HTML file
 ``` html
-<script src="node_modules/brique/index.js"></script>
+<script type="module" src="scripts/main.js"></script>
 ```
-Implementation in JavaScript
+JavaScript file (`scripts/main.js`)
 ``` js
+import { Brique } from 'node_modules/brique/lib/index.es.js';
+
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
 ```
-
 
 ## `BriqueOptions` object properties
 | Propriété | Type | Required | Description |
@@ -67,16 +67,12 @@ new Brique(refGrid);
 
 ### EX02: Default TypeScript implementation
 ``` ts
-import { Brique } from 'brique';
-
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
 ```
 
 ### EX03: Implementation with `BriqueOptions`
 ``` ts
-import { Brique } from 'brique';
-
 const refGrid = document.querySelector('.grid');
 const options = {
     columns: 4,
@@ -89,8 +85,6 @@ new Brique(refGrid, options);
 
 ### EX04: Watch resize
 ``` ts
-import { Brique } from 'brique';
-
 const refGrid = document.querySelector('.grid');
 const briqueGrid = new Brique(refGrid);
 
@@ -104,8 +98,6 @@ briqueGrid.stopWatchResize();
 
 ### EX05: Change options with media queries
 ``` ts
-import { Brique } from 'brique';
-
 const refGrid = document.querySelector('.grid');
 const briqueGrid = new Brique(refGrid);
 const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
