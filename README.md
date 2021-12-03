@@ -10,7 +10,7 @@ npm i brique --save
 
 #### TypeScript
 ``` ts
-import { Brique } from 'node_modules/brique/lib/index.js';
+import { Brique } from './node_modules/brique/lib/index.js';
 
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
@@ -23,7 +23,7 @@ HTML file
 ```
 JavaScript file (`scripts/main.js`)
 ``` js
-import { Brique } from 'node_modules/brique/lib/index.es.js';
+import { Brique } from './node_modules/brique/lib/index.es.js';
 
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
@@ -66,7 +66,7 @@ new Brique(refGrid);
 
 ### EX02: Default TypeScript implementation
 ``` ts
-import { Brique } from 'node_modules/brique/lib/index.js';
+import { Brique } from './node_modules/brique/lib/index.js';
 
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
