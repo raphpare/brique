@@ -1,15 +1,14 @@
-# Brique.ts
+# Brique.js
 Creating cascading layout grids like [Pinterest](https://www.pinterest.com/).
 
 ## Install
-### Package manager
 ```
 npm i brique --save
 ```
 
-## Initialize
+### Initialize
 
-### TypeScript
+#### TypeScript
 ``` ts
 import { Brique } from 'node_modules/brique/lib/index.js';
 
@@ -17,7 +16,7 @@ const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
 ```
 
-### JavaScript ES6
+#### JavaScript ES6
 HTML file
 ``` html
 <script type="module" src="scripts/main.js"></script>
@@ -67,6 +66,8 @@ new Brique(refGrid);
 
 ### EX02: Default TypeScript implementation
 ``` ts
+import { Brique } from 'node_modules/brique/lib/index.js';
+
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);
 ```
