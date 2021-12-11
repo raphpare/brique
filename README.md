@@ -23,7 +23,7 @@ HTML file
 ```
 JavaScript file (`scripts/main.js`)
 ``` js
-import { Brique } from './node_modules/brique/lib/index.es.js';
+import { Brique } from './node_modules/brique/lib/index.esm.js';
 
 const refGrid = document.querySelector('.grid');
 new Brique(refGrid);

@@ -2,30 +2,34 @@
     "name": "brique",
     "version": "1.0.2",
     "description": "Creating cascading layout grids like Pinterest",
-    "keywords": ["layout", "grid", "pinterest"],
+    "keywords": [
+        "layout",
+        "grid",
+        "pinterest"
+    ],
     "homepage": "https://github.com/raphpare/brique#readme",
     "bug": {
-        "url" : "https://github.com/raphpare/brique/issues"
+        "url": "https://github.com/raphpare/brique/issues"
     },
     "license": "ISC",
     "author": "Raphaël Paré <raph.pare@outlook.com> (https://github.com/raphpare)",
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "main": "lib/index.js",
-    "module": "lib/index.es.js",
+    "module": "lib/index.esm.js",
     "types": "lib/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "https://github.com/raphpare/brique.git"    
+        "url": "https://github.com/raphpare/brique.git"
     },
     "scripts": {
-        "build": "rimraf lib && rollup -c",
-        "watch": "rimraf lib && rollup -c && rollup -cw",
+        "build": "rimraf lib && node esbuild.config.js && tsc",
+        "watch": "rimraf lib && node esbuild.config.js --watch",
         "clean": "rimraf node_modules && rimraf lib"
     },
     "devDependencies": {
-        "rollup": "^2.60.2",
-        "rollup-plugin-terser": "^7.0.2",
-        "rollup-plugin-typescript2": "^0.31.1",
+        "esbuild": "^0.14.2",
         "typescript": "^4.5.2"
     }
 }

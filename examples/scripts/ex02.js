@@ -1,4 +1,4 @@
-import { Brique } from '../../lib/index.es.js';
+import { Brique } from '../../lib/index.esm.js';
 
 const refGrid = document.querySelector('.grid');
 const options = {

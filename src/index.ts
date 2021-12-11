@@ -3,7 +3,6 @@ export interface BriqueOptions {
     columnGap?: string;
     rowGap?: string;
 }
-
 export class Brique {
     public static DEFAULT_OPTIONS: BriqueOptions = {
         columns: 3,
@@ -45,7 +44,7 @@ export class Brique {
         this.resize();
     }
 
-    public stropWatchResize() {
+    public stopWatchResize() {
         window.removeEventListener('resize', this.resizeEvent);
     }
 
