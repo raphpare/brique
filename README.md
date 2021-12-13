@@ -113,7 +113,7 @@ briqueGrid.setOptions({
     columns: 5
 });
 ```
-Allows you to create a [responsive grid](#responsive-grid).
+Can be used to create a [responsive grid](#responsive-grid).
 
 ### update()
 Update rendering on demand
