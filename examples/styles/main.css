@@ -41,12 +41,12 @@ main {
     padding: 40px 32px;
 }
 
-.grid {
+.brique {
     margin: 0;
     list-style: none;
 }
 
-.box {
+.brique__item {
     border-radius: 4px;
     padding: 24px;
     background-color: #ffffff;

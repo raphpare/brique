@@ -12,7 +12,7 @@ npm i brique --save
 ``` ts
 import { Brique } from './node_modules/brique/lib/index.js';
 
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 new Brique(refGrid);
 ```
 
@@ -25,7 +25,7 @@ JavaScript file (`scripts/main.js`)
 ``` js
 import { Brique } from './node_modules/brique/lib/index.esm.js';
 
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 new Brique(refGrid);
 ```
 
@@ -41,7 +41,7 @@ new Brique(refGrid);
 ## Exemples
 ### EX01: HTML markup example
 ``` html
-<div class="grid">
+<div id="grid">
     <div>
         <h2>Box 1</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -64,17 +64,17 @@ new Brique(refGrid);
 </div>
 ```
 
-### EX02: Default TypeScript implementation
+### EX02: Default implementation
 ``` ts
 import { Brique } from './node_modules/brique/lib/index.js';
 
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 new Brique(refGrid);
 ```
 
 ### EX03: Implementation with `BriqueOptions`
 ``` ts
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 const options = {
     columns: 4,
     rowGap: '24px',
@@ -86,7 +86,7 @@ new Brique(refGrid, options);
 
 ### EX04: Watch resize
 ``` ts
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
 
 briqueGrid.watchResize();
@@ -99,7 +99,7 @@ briqueGrid.stopWatchResize();
 
 ### EX05: Change options with media queries
 ``` ts
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
 const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
 

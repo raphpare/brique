@@ -1,6 +1,6 @@
 import { Brique } from '../../lib/index.esm.js';
 
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 const options = {
     columns: 4,
     rowGap: '24px',

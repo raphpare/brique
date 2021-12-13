@@ -1,6 +1,6 @@
 import { Brique } from '../../lib/index.esm.js';
 
-const refGrid = document.querySelector('.grid');
+const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
 const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
 
