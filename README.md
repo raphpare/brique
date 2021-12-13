@@ -1,27 +1,37 @@
 # Brique.js
 Creating cascading layout grids like [Pinterest](https://www.pinterest.com/).
+Use the power of CSS Grid Layout.
+
+## Getting Started
+1. [Install](#install)
+2. [Instantiate](#instantiate)
+3. [HTML markup example](#HTML-markup-example)
+4. [Parameter](#parameter)
+5. [Methods](#methods)
+6. [Responsive grid](#responsive-grid)
 
 ## Install
 ```
-npm i brique --save
+$ npm i brique --save
 ```
 
-### Initialize
+## Instantiate
 
-#### TypeScript
+### TypeScript
 ``` ts
-import { Brique } from './node_modules/brique/lib/index.js';
+import { Brique } from './node_modules/brique/lib';
 
 const refGrid = document.getElementById('grid');
 new Brique(refGrid);
 ```
 
-#### JavaScript ES6
-HTML file
+### JavaScript ES6
+HTML `script` tag requires the `type="module"` attribute.
 ``` html
 <script type="module" src="scripts/main.js"></script>
 ```
-JavaScript file (`scripts/main.js`)
+
+Create the grid in the JavaScript file (`scripts/main.js`) and import the `esm` version of the library (`index.esm.js`).
 ``` js
 import { Brique } from './node_modules/brique/lib/index.esm.js';
 
@@ -29,17 +39,7 @@ const refGrid = document.getElementById('grid');
 new Brique(refGrid);
 ```
 
-## `BriqueOptions` object properties
-| Propriété | Type | Required | Description |
-| --- | --- | --- | --- |
-| columns | number |  true |  Number of columns |
-| columnGap | string | false | Spacing between columns |
-| rowGap | string | false | Spacing between row |
-
-
-
-## Exemples
-### EX01: HTML markup example
+## HTML markup example
 ``` html
 <div id="grid">
     <div>
@@ -63,16 +63,15 @@ new Brique(refGrid);
     </div>
 </div>
 ```
+## Parameter
+### Options (`BriqueOptions`)
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| columns | number |  true |  Number of columns |
+| columnGap | string | false | Spacing between columns |
+| rowGap | string | false | Spacing between row |
 
-### EX02: Default implementation
-``` ts
-import { Brique } from './node_modules/brique/lib/index.js';
-
-const refGrid = document.getElementById('grid');
-new Brique(refGrid);
-```
-
-### EX03: Implementation with `BriqueOptions`
+#### Example
 ``` ts
 const refGrid = document.getElementById('grid');
 const options = {
@@ -84,7 +83,9 @@ const options = {
 new Brique(refGrid, options);
 ```
 
-### EX04: Watch resize
+## Methods
+### watchResize()
+Resize the grid items when the window is resized.
 ``` ts
 const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
@@ -92,12 +93,36 @@ const briqueGrid = new Brique(refGrid);
 briqueGrid.watchResize();
 ```
 
-#### Stop watch resize
+### stopWatchResize()
+Stop resize the grid items when the window is resized.
+
 ``` ts
 briqueGrid.stopWatchResize();
 ```
 
-### EX05: Change options with media queries
+### getOptions()
+Get current options parameter.
+``` ts
+briqueGrid.getOptions(); // output: { columns: 3, rowGap: '32px', columnGap: '32px'}
+```
+
+### setOptions()
+Change options parameter. 
+``` ts
+briqueGrid.setOptions({
+    columns: 5
+});
+```
+Allows you to create a [responsive grid](#responsive-grid).
+
+### update()
+Update rendering on demand
+``` ts
+briqueGrid.update();
+```
+
+## Responsive grid 
+Update options parameter on media queries change
 ``` ts
 const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
@@ -113,9 +138,4 @@ function setOptionsBrique() {
 setOptionsBrique();
 briqueGrid.watchResize();
 mediaQueryMobile.addEventListener('change', setOptionsBrique);
-```
-
-### Update rendering on demand
-``` ts
-briqueGrid.update();
 ```
