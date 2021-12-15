@@ -41,6 +41,24 @@ main {
     padding: 40px 32px;
 }
 
+button {
+    transition: background-color 0.3s ease;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 16px;
+    appearance: none;
+    border: 1px solid lightblue;
+    border-radius: 6px;
+    background: lightblue;
+    cursor: pointer;
+    margin-top: 24px;
+}
+
+button:hover:not(:active) {
+    background: white;
+}
+
 .brique {
     margin: 0;
     list-style: none;

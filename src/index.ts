@@ -13,6 +13,7 @@ export class Brique {
     public itemElements?: HTMLElement[];
     private resizeEvent: () => void;
     private options: BriqueOptions;
+    private childrenObserver: MutationObserver;
 
     constructor(
         public gridElement: HTMLElement,
@@ -21,6 +22,23 @@ export class Brique {
         this.options = options;
         this.update();
         this.resizeEvent = this.drawItem.bind(this);
+        this.childrenObserver = new MutationObserver(this.updateItems.bind(this))
+        this.childrenObserver.observe(this.gridElement, { childList: true });
+    }
+
+    public update() {
+        this.setItemElements()
+        this.draw();
+    }
+
+    public updateItems() {
+        this.setItemElements()
+        this.drawItem();
+    }
+
+    public destroy(): void {
+        this.childrenObserver.disconnect();
+        this.stopWatchResize();
     }
 
     public setOptions(options: BriqueOptions) {
@@ -38,13 +56,6 @@ export class Brique {
 
     public stopWatchResize() {
         window.removeEventListener('resize', this.resizeEvent);
-    }
-
-    public update() {
-        this.itemElements = [].slice.call(
-            this.gridElement.children
-        ) as HTMLElement[];
-        this.draw();
     }
 
     private draw() {
@@ -75,32 +86,41 @@ export class Brique {
             } else if (item.style.marginTop) {
                 item.style.removeProperty('margin-top');
             }
-            const itemComputedStyle = window.getComputedStyle(item);
-            const itemSpacing: number =
-                parseInt(itemComputedStyle.getPropertyValue('margin-top')) +
-                parseInt(itemComputedStyle.getPropertyValue('padding-top')) +
-                parseInt(itemComputedStyle.getPropertyValue('padding-bottom'));
-            const itemHeight: number = (
-                [].slice.call(item.children) as HTMLElement[]
-            ).reduce((acc: number, curr: HTMLElement) => {
-                const childrenComputedStyle = window.getComputedStyle(curr);
-                const childrenMarginTop: number = parseInt(
-                    childrenComputedStyle.getPropertyValue('margin-top')
-                );
-                const childrenMarginBottom: number = parseInt(
-                    childrenComputedStyle.getPropertyValue('margin-bottom')
-                );
-                return (
-                    acc +
-                    curr.getBoundingClientRect().height +
-                    childrenMarginTop +
-                    childrenMarginBottom
-                );
-            }, itemSpacing as number);
             const rowSpan = Math.ceil(
-                (itemHeight + rowGap) / (rowHeight + rowGap)
+                (this.getItemHeight(item) + rowGap) / (rowHeight + rowGap)
             );
             item.style.gridRowEnd = `span ${rowSpan}`;
         });
+    }
+
+    private setItemElements(): void {
+        this.itemElements = [].slice.call(
+            this.gridElement.children
+        ) as HTMLElement[];
+    }
+
+    private getItemHeight(item: HTMLElement): number {
+        const itemComputedStyle = window.getComputedStyle(item);
+        const itemSpacing: number =
+            parseInt(itemComputedStyle.getPropertyValue('margin-top')) +
+            parseInt(itemComputedStyle.getPropertyValue('padding-top')) +
+            parseInt(itemComputedStyle.getPropertyValue('padding-bottom'));
+        return (
+            [].slice.call(item.children) as HTMLElement[]
+        ).reduce((acc: number, curr: HTMLElement) => {
+            const childrenComputedStyle = window.getComputedStyle(curr);
+            const childrenMarginTop: number = parseInt(
+                childrenComputedStyle.getPropertyValue('margin-top')
+            );
+            const childrenMarginBottom: number = parseInt(
+                childrenComputedStyle.getPropertyValue('margin-bottom')
+            );
+            return (
+                acc +
+                curr.getBoundingClientRect().height +
+                childrenMarginTop +
+                childrenMarginBottom
+            );
+        }, itemSpacing as number);
     }
 }
