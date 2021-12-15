@@ -20,7 +20,7 @@ export class Brique {
     ) {
         this.options = options;
         this.update();
-        this.resizeEvent = this.resize.bind(this);
+        this.resizeEvent = this.drawItem.bind(this);
     }
 
     public setOptions(options: BriqueOptions) {
@@ -36,19 +36,28 @@ export class Brique {
         window.addEventListener('resize', this.resizeEvent);
     }
 
-    public update() {
-        this.itemElements = [].slice.call(
-            this.gridElement.children
-        ) as HTMLElement[];
-        this.setStyle();
-        this.resize();
-    }
-
     public stopWatchResize() {
         window.removeEventListener('resize', this.resizeEvent);
     }
 
-    private resize() {
+    public update() {
+        this.itemElements = [].slice.call(
+            this.gridElement.children
+        ) as HTMLElement[];
+        this.draw();
+    }
+
+    private draw() {
+        const gridStyle = this.gridElement.style;
+        gridStyle.display = 'grid';
+        gridStyle.gridTemplateColumns = `repeat(${this.options.columns}, 1fr)`;
+        gridStyle.gridAutoRows = '1px';
+        gridStyle.columnGap = this.options.columnGap || '';
+        gridStyle.rowGap = '0';
+        this.drawItem();
+    }
+
+    private drawItem() {
         const gridComputedStyle: CSSStyleDeclaration = window.getComputedStyle(
             this.gridElement
         );
@@ -93,14 +102,5 @@ export class Brique {
             );
             item.style.gridRowEnd = `span ${rowSpan}`;
         });
-    }
-
-    private setStyle() {
-        const gridStyle = this.gridElement.style;
-        gridStyle.display = 'grid';
-        gridStyle.gridTemplateColumns = `repeat(${this.options.columns}, 1fr)`;
-        gridStyle.gridAutoRows = '1px';
-        gridStyle.columnGap = this.options.columnGap || '';
-        gridStyle.rowGap = '0';
     }
 }
