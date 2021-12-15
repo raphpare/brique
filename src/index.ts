@@ -18,12 +18,9 @@ export class Brique {
         public gridElement: HTMLElement,
         options: BriqueOptions = Brique.DEFAULT_OPTIONS
     ) {
-        this.itemElements = [].slice.call(
-            this.gridElement.children
-        ) as HTMLElement[];
         this.options = options;
-        this.resizeEvent = this.resize.bind(this);
         this.update();
+        this.resizeEvent = this.resize.bind(this);
     }
 
     public setOptions(options: BriqueOptions) {
@@ -40,6 +37,9 @@ export class Brique {
     }
 
     public update() {
+        this.itemElements = [].slice.call(
+            this.gridElement.children
+        ) as HTMLElement[];
         this.setStyle();
         this.resize();
     }
