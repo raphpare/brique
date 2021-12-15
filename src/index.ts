@@ -11,19 +11,25 @@ export class Brique {
     };
 
     public itemElements?: HTMLElement[];
-    private resizeEvent: () => void;
     private options: BriqueOptions;
+    private resizeEvent: () => void;
     private childrenObserver: MutationObserver;
+    private watchResizeActive: boolean;
 
     constructor(
-        public gridElement: HTMLElement,
-        options: BriqueOptions = Brique.DEFAULT_OPTIONS
+        public readonly gridElement: HTMLElement,
+        options: BriqueOptions = Brique.DEFAULT_OPTIONS,
+        watchResizeActive: boolean = true,
     ) {
         this.options = options;
         this.update();
         this.resizeEvent = this.drawItem.bind(this);
         this.childrenObserver = new MutationObserver(this.updateItems.bind(this))
         this.childrenObserver.observe(this.gridElement, { childList: true });
+    
+        if (watchResizeActive) {
+            this.watchResize();
+        }
     }
 
     public update() {
@@ -41,20 +47,31 @@ export class Brique {
         this.stopWatchResize();
     }
 
-    public setOptions(options: BriqueOptions) {
-        this.options = options;
-        this.update();
-    }
-
     public getOptions() {
         return this.options;
     }
 
+    public setOptions(options: BriqueOptions) {
+        this.options = options;
+        this.draw();
+    }
+
+    public updateOptions(updatedOptions: BriqueOptions) {
+        this.options = {
+            ...this.options,
+            ...updatedOptions
+        };
+        this.draw();
+    }
+
     public watchResize() {
+        if (this.watchResizeActive) return;
         window.addEventListener('resize', this.resizeEvent);
+        this.watchResizeActive = true;
     }
 
     public stopWatchResize() {
+        if (!this.watchResizeActive) return;
         window.removeEventListener('resize', this.resizeEvent);
     }
 
