@@ -22,7 +22,7 @@ export class Brique {
         updateOnResizeActive: boolean = true,
     ) {
         this.options = options;
-        this.resizeEvent = this.drawItem.bind(this);
+        this.resizeEvent = this.drawItems.bind(this);
         this.update();
         this.childrenObserver = new MutationObserver(this.updateItems.bind(this))
         this.childrenObserver.observe(this.gridElement, { childList: true, subtree: true });
@@ -39,7 +39,7 @@ export class Brique {
 
     public updateItems(): void {
         this.setItemElements()
-        this.drawItem();
+        this.drawItems();
     }
 
     public updateOnResize(): void {
@@ -82,10 +82,10 @@ export class Brique {
         gridStyle.gridAutoRows = '1px';
         gridStyle.columnGap = this.options.columnGap || '';
         gridStyle.rowGap = '0';
-        this.drawItem();
+        this.drawItems();
     }
 
-    private drawItem(): void {
+    private drawItems(): void {
         if (!this.itemElements) return;
         for (let i = 0, len = this.itemElements.length; i < len; i++) {
             const item: HTMLElement = this.itemElements[i];
