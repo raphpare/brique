@@ -148,7 +148,7 @@ briqueGrid.setOptions({
 });
 ```
 
-### updateOptions(`options`)
+### updateOptions(`updatedOptions`)
 Updates only changed properties.
 ``` ts
 briqueGrid.updateOptions({
