@@ -14,7 +14,7 @@ body {
 }
 
 p {
-    margin: 16px 0 0 0;
+    margin: 16px 0 0;
 }
 
 h1,
@@ -60,6 +60,7 @@ button:hover:not(:active) {
 }
 
 .brique {
+    display: none;
     margin: 0;
     list-style: none;
 }
@@ -69,6 +70,7 @@ button:hover:not(:active) {
     padding: 24px;
     background-color: #ffffff;
 }
+
 
 .mt--l {
     margin-top: 32px;;

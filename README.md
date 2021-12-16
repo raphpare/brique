@@ -6,9 +6,10 @@ Use the power of CSS Grid Layout.
 1. [Install](#install)
 2. [Instantiate](#instantiate)
 3. [HTML markup example](#HTML-markup-example)
-4. [Parameter](#parameter)
-5. [Methods](#methods)
-6. [Responsive grid](#responsive-grid)
+4. [Parameters](#parameters)
+5. [Properties](#properties)
+6. [Methods](#methods)
+7. [Responsive grid](#responsive-grid)
 
 ## Install
 ```
@@ -63,14 +64,20 @@ new Brique(refGrid);
     </div>
 </div>
 ```
-## Parameter
-### Options (`BriqueOptions`)
+## Parameters
+3 parameters can be passed to the `Brique` class.
+```ts
+new Brique(gridElement, options, updateOnResizeActive);
+```
+### gridElement`: HTMLElement`
+Target HTML element which is the container for grid items.
+
+### options`: BriqueOptions` (Optional)
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
 | columns | number |  true |  Number of columns |
 | columnGap | string | false | Spacing between columns |
 | rowGap | string | false | Spacing between row |
-
 #### Example
 ``` ts
 const refGrid = document.getElementById('grid');
@@ -83,59 +90,95 @@ const options = {
 new Brique(refGrid, options);
 ```
 
+### updateOnResizeActive`: boolean` (Optional)
+The default value for this parameter is `true`.
+
+If the value is `true`, the grid items will be updated when the viewport is resized.
+
+If the value is `false`, the grid will **never** be updated when the viewport is resized.
+
+## Properties
+
+### Default options
+Static property which returns the options defined by default in the `Brique` class.
+```ts
+Brique.DEFAULT_OPTIONS;
+```
+### itemElements`: HTMLElement[]`
+Reference array of HTML elements of all grid items.
+
 ## Methods
-### watchResize()
-Resize the grid items when the window is resized.
+### update()
+Update the rendering of the entire grid on demand.
+``` ts
+briqueGrid.update();
+```
+### updateItems()
+Update the rendering of the grid items on demand.
+``` ts
+briqueGrid.updateItems();
+```
+
+### updateOnResize()
+Update the dimension of grid items when the window is resized.
 ``` ts
 const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
 
-briqueGrid.watchResize();
+briqueGrid.updateOnResize();
 ```
 
-### stopWatchResize()
-Stop resize the grid items when the window is resized.
-
+### stopUpdateOnResize()
+Stop update the dimension of grid items when the window is resized.
 ``` ts
-briqueGrid.stopWatchResize();
+briqueGrid.stopUpdateOnResize();
 ```
 
-### getOptions()
-Get current options parameter.
+### getOptions()`: BriqueOptions`
+Return current options object.
 ``` ts
 briqueGrid.getOptions(); // output: { columns: 3, rowGap: '32px', columnGap: '32px'}
 ```
 
-### setOptions()
-Change options parameter. 
+### setOptions(`options`)
+Change all properties of options object. 
 ``` ts
 briqueGrid.setOptions({
     columns: 5
 });
 ```
+
+### updateOptions(`options`)
+Updates only changed properties.
+``` ts
+briqueGrid.updateOptions({
+    columns: 5
+});
+```
 Can be used to create a [responsive grid](#responsive-grid).
 
-### update()
-Update rendering on demand
-``` ts
-briqueGrid.update();
-```
+### destroy()
+The method removes all events listened to on the HTML elements handled by the `Brique` class.
+
+The `destroy()` method must be called when the grid is removed from HTML.
 
 ## Responsive grid 
-Update options parameter on media queries change
+Update options object on media queries change.
 ``` ts
 const refGrid = document.getElementById('grid');
-const briqueGrid = new Brique(refGrid);
 const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
 
-function setOptionsBrique() {
-    briqueGrid.setOptions({
-        ...briqueGrid.getOptions(),
-        columns: mediaQueryMobile.matches ? 2 : 3
-    });
-}
+const getColumnsNumber = () => mediaQueryMobile.matches ? 2 : 3;
 
-setOptionsBrique();
-briqueGrid.watchResize();
-mediaQueryMobile.addEventListener('change', setOptionsBrique);
+const briqueGrid = new Brique(refGrid, {
+    columns: getColumnsNumber(),
+    columnGap: '32px',
+    rowGap: '32px',
+});
+
+mediaQueryMobile.addEventListener('change', () => {
+    briqueGrid.updateOptions({
+        columns: getColumnsNumber(),
+    });
+});
 ```

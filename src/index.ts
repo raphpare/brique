@@ -14,49 +14,55 @@ export class Brique {
     private options: BriqueOptions;
     private resizeEvent: () => void;
     private childrenObserver: MutationObserver;
-    private watchResizeActive: boolean;
+    private updateOnResizeActive: boolean;
 
     constructor(
         public readonly gridElement: HTMLElement,
         options: BriqueOptions = Brique.DEFAULT_OPTIONS,
-        watchResizeActive: boolean = true,
+        updateOnResizeActive: boolean = true,
     ) {
         this.options = options;
-        this.update();
         this.resizeEvent = this.drawItem.bind(this);
+        this.update();
         this.childrenObserver = new MutationObserver(this.updateItems.bind(this))
-        this.childrenObserver.observe(this.gridElement, { childList: true });
-    
-        if (watchResizeActive) {
-            this.watchResize();
+        this.childrenObserver.observe(this.gridElement, { childList: true, subtree: true });
+
+        if (updateOnResizeActive) {
+            this.updateOnResize();
         }
     }
 
-    public update() {
+    public update(): void {
         this.setItemElements()
         this.draw();
     }
 
-    public updateItems() {
+    public updateItems(): void {
         this.setItemElements()
         this.drawItem();
     }
 
-    public destroy(): void {
-        this.childrenObserver.disconnect();
-        this.stopWatchResize();
+    public updateOnResize(): void {
+        if (this.updateOnResizeActive) return;
+        window.addEventListener('resize', this.resizeEvent);
+        this.updateOnResizeActive = true;
     }
 
-    public getOptions() {
+    public stopUpdateOnResize(): void {
+        if (!this.updateOnResizeActive) return;
+        window.removeEventListener('resize', this.resizeEvent);
+    }
+
+    public getOptions(): BriqueOptions {
         return this.options;
     }
 
-    public setOptions(options: BriqueOptions) {
+    public setOptions(options: BriqueOptions): void {
         this.options = options;
         this.draw();
     }
 
-    public updateOptions(updatedOptions: BriqueOptions) {
+    public updateOptions(updatedOptions: BriqueOptions): void {
         this.options = {
             ...this.options,
             ...updatedOptions
@@ -64,19 +70,13 @@ export class Brique {
         this.draw();
     }
 
-    public watchResize() {
-        if (this.watchResizeActive) return;
-        window.addEventListener('resize', this.resizeEvent);
-        this.watchResizeActive = true;
+    public destroy(): void {
+        this.childrenObserver.disconnect();
+        this.stopUpdateOnResize();
     }
 
-    public stopWatchResize() {
-        if (!this.watchResizeActive) return;
-        window.removeEventListener('resize', this.resizeEvent);
-    }
-
-    private draw() {
-        const gridStyle = this.gridElement.style;
+    private draw(): void {
+        const gridStyle: CSSStyleDeclaration = this.gridElement.style;
         gridStyle.display = 'grid';
         gridStyle.gridTemplateColumns = `repeat(${this.options.columns}, 1fr)`;
         gridStyle.gridAutoRows = '1px';
@@ -85,59 +85,32 @@ export class Brique {
         this.drawItem();
     }
 
-    private drawItem() {
-        const gridComputedStyle: CSSStyleDeclaration = window.getComputedStyle(
-            this.gridElement
-        );
-        const rowHeight: number = parseInt(
-            gridComputedStyle.getPropertyValue('grid-auto-rows')
-        );
-        const rowGap: number = parseInt(
-            gridComputedStyle.getPropertyValue('grid-row-gap')
-        );
-
+    private drawItem(): void {
         if (!this.itemElements) return;
-        this.itemElements.forEach((item, index) => {
-            if (this.options.columns <= index) {
-                item.style.marginTop = this.options.rowGap || '';
-            } else if (item.style.marginTop) {
-                item.style.removeProperty('margin-top');
+        for (let i = 0, len = this.itemElements.length; i < len; i++) {
+            const item: HTMLElement = this.itemElements[i];
+            const itemStyle: CSSStyleDeclaration = item.style;
+            itemStyle.gridRowEnd = undefined;
+            let spacing: number = 0;
+            if (this.options.columns <= i) {
+                const rowGap: string = this.options.rowGap;
+                itemStyle.marginTop = rowGap || '0';
+                spacing = parseInt(rowGap) || 0;
+            } else if (itemStyle.marginTop) {
+                itemStyle.removeProperty('margin-top');
             }
-            const rowSpan = Math.ceil(
-                (this.getItemHeight(item) + rowGap) / (rowHeight + rowGap)
-            );
-            item.style.gridRowEnd = `span ${rowSpan}`;
-        });
+            const firstChild: HTMLElement = <HTMLElement>item.children[0];
+            if (firstChild) {
+                firstChild.style.marginTop = '0';
+                spacing -= firstChild.offsetTop - item.offsetTop;
+            }
+            itemStyle.gridRowEnd = `span ${spacing + item.scrollHeight + item.clientHeight}`;
+        }
     }
 
     private setItemElements(): void {
-        this.itemElements = [].slice.call(
+        this.itemElements = <HTMLElement[]>[].slice.call(
             this.gridElement.children
-        ) as HTMLElement[];
-    }
-
-    private getItemHeight(item: HTMLElement): number {
-        const itemComputedStyle = window.getComputedStyle(item);
-        const itemSpacing: number =
-            parseInt(itemComputedStyle.getPropertyValue('margin-top')) +
-            parseInt(itemComputedStyle.getPropertyValue('padding-top')) +
-            parseInt(itemComputedStyle.getPropertyValue('padding-bottom'));
-        return (
-            [].slice.call(item.children) as HTMLElement[]
-        ).reduce((acc: number, curr: HTMLElement) => {
-            const childrenComputedStyle = window.getComputedStyle(curr);
-            const childrenMarginTop: number = parseInt(
-                childrenComputedStyle.getPropertyValue('margin-top')
-            );
-            const childrenMarginBottom: number = parseInt(
-                childrenComputedStyle.getPropertyValue('margin-bottom')
-            );
-            return (
-                acc +
-                curr.getBoundingClientRect().height +
-                childrenMarginTop +
-                childrenMarginBottom
-            );
-        }, itemSpacing as number);
+        );
     }
 }
