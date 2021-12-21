@@ -1,11 +1,9 @@
 # Brique.js
-Creating cascading layout grids like [Pinterest](https://www.pinterest.com/).
+Create cascading layout grids like [Pinterest](https://www.pinterest.com/) with the power of **CSS Grid Layout**.
 
-Create with the power of **CSS Grid Layout**.
-
-## Documentation
 [Check out our documentation](https://raphpare.github.io/brique/)
 
+<img alt="Brique example" style="width: 100%; margin: 0 auto; max-width: 800px;" src="https://github.com/raphpare/brique/blob/master/img/example.png?raw=true">
 
 ## Getting Started
 1. [Install](#install)

@@ -1,12 +1,14 @@
 {
     "name": "brique",
     "version": "1.0.11",
-    "description": "Creating cascading layout grids like Pinterest",
+    "description": "Create cascading layout grids like Pinterest with the power of CSS Grid Layout.",
     "keywords": [
         "grid",
         "layout",
         "masonry",
-        "pinterest"
+        "pinterest",
+        "CSS Grid Layout",
+        "brick"
     ],
     "homepage": "https://raphpare.github.io/brique",
     "bug": {
