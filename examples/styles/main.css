@@ -37,13 +37,6 @@ header {
     padding: 40px 32px 0;
 }
 
-h2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(143, 143, 143);
-}
-
 main {
     padding: 40px 32px;
 }
@@ -77,6 +70,11 @@ button:hover:not(:active) {
     padding: 24px;
     background-color: #fafafa;
     border: 1px dashed rgb(143, 143, 143);
+}
+
+.brique__item h2 {
+    font-size: 1.2rem;
+    color: rgb(143, 143, 143);
 }
 
 
