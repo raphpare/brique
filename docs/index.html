@@ -1,0 +1,192 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>brique</title><meta name="description" content="Documentation for brique"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">brique</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>brique</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#briquejs" id="briquejs" style="color: inherit; text-decoration: none;">
+  <h1>Brique.js</h1>
+</a>
+<p>Creating cascading layout grids like <a href="https://www.pinterest.com/">Pinterest</a>.
+Use the power of CSS Grid Layout.</p>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+<ol>
+<li><a href="#install">Install</a></li>
+<li><a href="#instantiate">Instantiate</a></li>
+<li><a href="#HTML-markup-example">HTML markup example</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#responsive-grid">Responsive grid</a></li>
+</ol>
+
+<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+  <h2>Install</h2>
+</a>
+<pre><code><span class="hl-0">$</span><span class="hl-1"> </span><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">i</span><span class="hl-1"> </span><span class="hl-0">brique</span><span class="hl-1"> --</span><span class="hl-0">save</span>
+</code></pre>
+
+<a href="#instantiate" id="instantiate" style="color: inherit; text-decoration: none;">
+  <h2>Instantiate</h2>
+</a>
+
+<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
+  <h3>TypeScript</h3>
+</a>
+<pre><code class="language-ts"><span class="hl-2">import</span><span class="hl-1"> { </span><span class="hl-0">Brique</span><span class="hl-1"> } </span><span class="hl-2">from</span><span class="hl-1"> </span><span class="hl-3">&#39;./node_modules/brique/lib&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">refGrid</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-6">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;grid&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Brique</span><span class="hl-1">(</span><span class="hl-0">refGrid</span><span class="hl-1">);</span>
+</code></pre>
+
+<a href="#javascript-es6" id="javascript-es6" style="color: inherit; text-decoration: none;">
+  <h3>JavaScript ES6</h3>
+</a>
+<p>HTML <code>script</code> tag requires the <code>type=&quot;module&quot;</code> attribute.</p>
+<pre><code class="language-html"><span class="hl-7">&lt;</span><span class="hl-8">script</span><span class="hl-9"> </span><span class="hl-10">type</span><span class="hl-9">=</span><span class="hl-11">&quot;module&quot;</span><span class="hl-9"> </span><span class="hl-10">src</span><span class="hl-9">=</span><span class="hl-11">&quot;scripts/main.js&quot;</span><span class="hl-7">&gt;&lt;/</span><span class="hl-8">script</span><span class="hl-7">&gt;</span>
+</code></pre>
+<p>Create the grid in the JavaScript file (<code>scripts/main.js</code>) and import the <code>esm</code> version of the library (<code>index.esm.js</code>).</p>
+<pre><code class="language-js"><span class="hl-2">import</span><span class="hl-1"> { </span><span class="hl-0">Brique</span><span class="hl-1"> } </span><span class="hl-2">from</span><span class="hl-1"> </span><span class="hl-3">&#39;./node_modules/brique/lib/index.esm.js&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">refGrid</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-6">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;grid&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Brique</span><span class="hl-1">(</span><span class="hl-0">refGrid</span><span class="hl-1">);</span>
+</code></pre>
+
+<a href="#html-markup-example" id="html-markup-example" style="color: inherit; text-decoration: none;">
+  <h2>HTML markup example</h2>
+</a>
+<pre><code class="language-html"><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-1"> </span><span class="hl-10">id</span><span class="hl-1">=</span><span class="hl-11">&quot;grid&quot;</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><span class="hl-1">Box 1</span><span class="hl-7">&lt;/</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><span class="hl-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span><span class="hl-7">&lt;/</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><span class="hl-1">Box 2</span><span class="hl-7">&lt;/</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><span class="hl-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboret.</span><span class="hl-7">&lt;/</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><span class="hl-1">Box 3</span><span class="hl-7">&lt;/</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><span class="hl-1">Box 4</span><span class="hl-7">&lt;/</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><span class="hl-1">Lorem ipsum dolor sit amet.</span><span class="hl-7">&lt;/</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><span class="hl-1">Box 5</span><span class="hl-7">&lt;/</span><span class="hl-8">h2</span><span class="hl-7">&gt;</span><br/><span class="hl-1">        </span><span class="hl-7">&lt;</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><span class="hl-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</span><span class="hl-7">&lt;/</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-1">    </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span>
+</code></pre>
+
+<a href="#parameters" id="parameters" style="color: inherit; text-decoration: none;">
+  <h2>Parameters</h2>
+</a>
+<p>3 parameters can be passed to the <code>Brique</code> class.</p>
+<pre><code class="language-ts"><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Brique</span><span class="hl-1">(</span><span class="hl-0">gridElement</span><span class="hl-1">, </span><span class="hl-0">options</span><span class="hl-1">, </span><span class="hl-0">observeGridResize</span><span class="hl-1">);</span>
+</code></pre>
+
+<a href="#gridelement-htmlelement" id="gridelement-htmlelement" style="color: inherit; text-decoration: none;">
+  <h3>gridElement<code>: HTMLElement</code></h3>
+</a>
+<p>Target HTML element which is the container for grid items.</p>
+
+<a href="#options-briqueoptions-optional" id="options-briqueoptions-optional" style="color: inherit; text-decoration: none;">
+  <h3>options<code>: BriqueOptions</code> (Optional)</h3>
+</a>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>columns</td>
+<td>number</td>
+<td>true</td>
+<td>Number of columns</td>
+</tr>
+<tr>
+<td>columnGap</td>
+<td>string</td>
+<td>false</td>
+<td>Spacing between columns</td>
+</tr>
+<tr>
+<td>rowGap</td>
+<td>string</td>
+<td>false</td>
+<td>Spacing between row</td>
+</tr>
+</tbody></table>
+
+<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+  <h4>Example</h4>
+</a>
+<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">refGrid</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-6">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;grid&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">options</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-0">columns:</span><span class="hl-1"> </span><span class="hl-12">4</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-0">rowGap:</span><span class="hl-1"> </span><span class="hl-3">&#39;24px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-0">columnGap:</span><span class="hl-1"> </span><span class="hl-3">&#39;16px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span><br/><br/><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Brique</span><span class="hl-1">(</span><span class="hl-0">refGrid</span><span class="hl-1">, </span><span class="hl-0">options</span><span class="hl-1">);</span>
+</code></pre>
+
+<a href="#observegridresize-boolean-optional" id="observegridresize-boolean-optional" style="color: inherit; text-decoration: none;">
+  <h3>observeGridResize<code>: boolean</code> (Optional)</h3>
+</a>
+<p>The default value for this parameter is <code>true</code>.</p>
+<p>If the value is <code>true</code>, the grid items will be updated when the viewport is resized.</p>
+<p>If the value is <code>false</code>, the grid will <strong>never</strong> be updated when the viewport is resized.</p>
+
+<a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
+  <h2>Properties</h2>
+</a>
+
+<a href="#default-options" id="default-options" style="color: inherit; text-decoration: none;">
+  <h3>Default options</h3>
+</a>
+<p>Static property which returns the options defined by default in the <code>Brique</code> class.</p>
+<pre><code class="language-ts"><span class="hl-0">Brique</span><span class="hl-1">.</span><span class="hl-5">DEFAULT_OPTIONS</span><span class="hl-1">;</span>
+</code></pre>
+
+<a href="#itemelements-htmlelement" id="itemelements-htmlelement" style="color: inherit; text-decoration: none;">
+  <h3>itemElements<code>: HTMLElement[]</code></h3>
+</a>
+<p>Reference array of HTML elements of all grid items.</p>
+
+<a href="#methods" id="methods" style="color: inherit; text-decoration: none;">
+  <h2>Methods</h2>
+</a>
+
+<a href="#update" id="update" style="color: inherit; text-decoration: none;">
+  <h3>update()</h3>
+</a>
+<p>Update the rendering of the entire grid on demand.</p>
+<pre><code class="language-ts"><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">update</span><span class="hl-1">();</span>
+</code></pre>
+
+<a href="#updateitems" id="updateitems" style="color: inherit; text-decoration: none;">
+  <h3>updateItems()</h3>
+</a>
+<p>Update the rendering of the grid items on demand.</p>
+<pre><code class="language-ts"><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">updateItems</span><span class="hl-1">();</span>
+</code></pre>
+
+<a href="#updateonresize" id="updateonresize" style="color: inherit; text-decoration: none;">
+  <h3>updateOnResize()</h3>
+</a>
+<p>Update the dimension of grid items when the grid element is resized.</p>
+<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">refGrid</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-6">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;grid&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">briqueGrid</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Brique</span><span class="hl-1">(</span><span class="hl-0">refGrid</span><span class="hl-1">);</span><br/><br/><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">updateOnResize</span><span class="hl-1">();</span>
+</code></pre>
+
+<a href="#stopupdateonresize" id="stopupdateonresize" style="color: inherit; text-decoration: none;">
+  <h3>stopUpdateOnResize()</h3>
+</a>
+<p>Stop update the dimension of grid items when the grid element is resized.</p>
+<pre><code class="language-ts"><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">stopUpdateOnResize</span><span class="hl-1">();</span>
+</code></pre>
+
+<a href="#getoptions-briqueoptions" id="getoptions-briqueoptions" style="color: inherit; text-decoration: none;">
+  <h3>getOptions()<code>: BriqueOptions</code></h3>
+</a>
+<p>Return current options object.</p>
+<pre><code class="language-ts"><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">getOptions</span><span class="hl-1">(); </span><span class="hl-13">// output: { columns: 3, rowGap: &#39;32px&#39;, columnGap: &#39;32px&#39;}</span>
+</code></pre>
+
+<a href="#setoptionsoptions" id="setoptionsoptions" style="color: inherit; text-decoration: none;">
+  <h3>setOptions(<code>options</code>)</h3>
+</a>
+<p>Change all properties of options object. </p>
+<pre><code class="language-ts"><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">setOptions</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-0">columns:</span><span class="hl-1"> </span><span class="hl-12">5</span><br/><span class="hl-1">});</span>
+</code></pre>
+
+<a href="#updateoptionsupdatedoptions" id="updateoptionsupdatedoptions" style="color: inherit; text-decoration: none;">
+  <h3>updateOptions(<code>updatedOptions</code>)</h3>
+</a>
+<p>Updates only changed properties.</p>
+<pre><code class="language-ts"><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">updateOptions</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-0">columns:</span><span class="hl-1"> </span><span class="hl-12">5</span><br/><span class="hl-1">});</span>
+</code></pre>
+<p>Can be used to create a <a href="#responsive-grid">responsive grid</a>.</p>
+
+<a href="#destroy" id="destroy" style="color: inherit; text-decoration: none;">
+  <h3>destroy()</h3>
+</a>
+<p>Removes all events listened to on the HTML elements handled by the <code>Brique</code> class.</p>
+<p>The <code>destroy()</code> method must be called when the grid is removed from HTML.</p>
+
+<a href="#responsive-grid" id="responsive-grid" style="color: inherit; text-decoration: none;">
+  <h2>Responsive grid</h2>
+</a>
+<p>Update options object on media queries change.</p>
+<pre><code class="language-ts"><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">refGrid</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-6">getElementById</span><span class="hl-1">(</span><span class="hl-3">&#39;grid&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">mediaQueryMobile</span><span class="hl-1"> = </span><span class="hl-0">window</span><span class="hl-1">.</span><span class="hl-6">matchMedia</span><span class="hl-1">(</span><span class="hl-3">&#39;(max-width: 767px)&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-6">getColumnsNumber</span><span class="hl-1"> = () </span><span class="hl-4">=&gt;</span><span class="hl-1"> </span><span class="hl-0">mediaQueryMobile</span><span class="hl-1">.</span><span class="hl-0">matches</span><span class="hl-1"> ? </span><span class="hl-12">2</span><span class="hl-1"> : </span><span class="hl-12">3</span><span class="hl-1">;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">briqueGrid</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">Brique</span><span class="hl-1">(</span><span class="hl-0">refGrid</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-0">columns:</span><span class="hl-1"> </span><span class="hl-6">getColumnsNumber</span><span class="hl-1">(),</span><br/><span class="hl-1">    </span><span class="hl-0">columnGap:</span><span class="hl-1"> </span><span class="hl-3">&#39;32px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-0">rowGap:</span><span class="hl-1"> </span><span class="hl-3">&#39;32px&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-0">mediaQueryMobile</span><span class="hl-1">.</span><span class="hl-6">addEventListener</span><span class="hl-1">(</span><span class="hl-3">&#39;change&#39;</span><span class="hl-1">, () </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">briqueGrid</span><span class="hl-1">.</span><span class="hl-6">updateOptions</span><span class="hl-1">({</span><br/><span class="hl-1">        </span><span class="hl-0">columns:</span><span class="hl-1"> </span><span class="hl-6">getColumnsNumber</span><span class="hl-1">(),</span><br/><span class="hl-1">    });</span><br/><span class="hl-1">});</span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/Brique.html" class="tsd-kind-icon">Brique</a></li><li class="tsd-kind-interface"><a href="interfaces/BriqueOptions.html" class="tsd-kind-icon">Brique<wbr/>Options</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

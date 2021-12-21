@@ -67,7 +67,7 @@ new Brique(refGrid);
 ## Parameters
 3 parameters can be passed to the `Brique` class.
 ```ts
-new Brique(gridElement, options, updateOnResizeActive);
+new Brique(gridElement, options, observeGridResize);
 ```
 ### gridElement`: HTMLElement`
 Target HTML element which is the container for grid items.
@@ -90,7 +90,7 @@ const options = {
 new Brique(refGrid, options);
 ```
 
-### updateOnResizeActive`: boolean` (Optional)
+### observeGridResize`: boolean` (Optional)
 The default value for this parameter is `true`.
 
 If the value is `true`, the grid items will be updated when the viewport is resized.
@@ -120,7 +120,7 @@ briqueGrid.updateItems();
 ```
 
 ### updateOnResize()
-Update the dimension of grid items when the window is resized.
+Update the dimension of grid items when the grid element is resized.
 ``` ts
 const refGrid = document.getElementById('grid');
 const briqueGrid = new Brique(refGrid);
@@ -129,7 +129,7 @@ briqueGrid.updateOnResize();
 ```
 
 ### stopUpdateOnResize()
-Stop update the dimension of grid items when the window is resized.
+Stop update the dimension of grid items when the grid element is resized.
 ``` ts
 briqueGrid.stopUpdateOnResize();
 ```
@@ -158,7 +158,7 @@ briqueGrid.updateOptions({
 Can be used to create a [responsive grid](#responsive-grid).
 
 ### destroy()
-The method removes all events listened to on the HTML elements handled by the `Brique` class.
+Removes all events listened to on the HTML elements handled by the `Brique` class.
 
 The `destroy()` method must be called when the grid is removed from HTML.
 

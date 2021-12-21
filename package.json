@@ -1,6 +1,6 @@
 {
     "name": "brique",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "Creating cascading layout grids like Pinterest",
     "keywords": [
         "grid",
@@ -25,12 +25,14 @@
         "url": "https://github.com/raphpare/brique.git"
     },
     "scripts": {
-        "build": "rimraf lib && node esbuild.config.js && tsc",
+        "build": "rimraf lib && node esbuild.config.js && tsc && npm run typedoc",
         "watch": "rimraf lib && node esbuild.config.js --watch",
-        "clean": "rimraf node_modules && rimraf lib"
+        "typedoc": "rimraf docs && typedoc --out docs ./src",
+        "clean": "rimraf node_modules && rimraf lib && rimraf docs"
     },
     "devDependencies": {
         "esbuild": "^0.14.2",
+        "typedoc": "^0.22.10",
         "typescript": "^4.5.2"
     }
 }
