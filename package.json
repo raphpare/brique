@@ -1,6 +1,6 @@
 {
     "name": "brique",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "Create cascading layout grids like Pinterest with the power of CSS Grid Layout.",
     "keywords": [
         "grid",
